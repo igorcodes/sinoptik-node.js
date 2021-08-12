@@ -1,4 +1,4 @@
-const rp = require('request-promise')  //подключаем пакет из ноде модулес, который будет выполнять асинхронный запрос
+const rp = require('request-promise')  //подключаем пакет из ноде модулес
 
 //експортируем асинхронную функцию 
 module.exports = async function(city = '') {
@@ -10,9 +10,8 @@ module.exports = async function(city = '') {
 
     const uri = 'https://api.openweathermap.org/data/2.5/weather'
 
-    //делаем запрос для получения погоды
-
-    //создаем обьект конфигурации для запроса, параметры смотрим тут https://www.npmjs.com/package/request-promise
+    
+    //обьект конфигурации для запроса, параметры тут https://www.npmjs.com/package/request-promise
     const options = {
         uri,
         qs: {
@@ -25,11 +24,10 @@ module.exports = async function(city = '') {
 
     try {
     //созданный выше обьект options передадим в функцию request promise
-    const data = await rp(options) //с помощью оператора await ждем асинхронного выполнения запроса
+    const data = await rp(options)
 
     const celsius = (data.main.temp - 32) * 5/9
 
-    //если ошибки нет возвращаем обьект, поле везер пока равно пустой строке
     return {
         weather: `${data.name}: +${celsius.toFixed(0)}`, 
         error: null
